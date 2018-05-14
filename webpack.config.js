@@ -1,9 +1,38 @@
 const path = require('path');
 
-module.exports = {
-    entry: './src/app.js',
-    output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: 'app.bundle.js'
-    }
+module.exports = (env) => {
+    const environment = env || "development" ||'production';
+
+    return {
+        mode: environment,
+        entry: './src/app.js',
+        output: {
+            path: path.resolve(__dirname, 'build'),
+            filename: 'app.' + environment + '.bundle.js'
+        },
+
+    module: {
+      rules: [
+          {
+              test: /\.js$/,
+              loader: "babel-loader"
+          },
+          {
+              test: /\.css$/,
+              use: [
+                  { loader: 'style-loader'},
+                  {
+                      loader: 'css-loader',
+                      options: {
+                          modules: true
+                      }
+                  }
+              ]
+          }
+      ]
+    },
+    optymalization: {
+      minimize: false
+},
+}
 };

@@ -56,14 +56,5 @@ module.exports = (env) => {
       minimize: false
     },
 
-    plugins: [new HtmlWebpackPlugin, new OptimizeJsPlugin({
-    template: 'src/index.html',
-    filename: 'index.html',
-    inject: 'body',
-    sourceMap: false
-    })]
-
-}
-
-    plugins
+   plugins: plugins
 };
